@@ -1,27 +1,41 @@
 "use client"
+import { Bookmark, Star } from "lucide-react";
+import Link from "next/link";
 import { ModeToggle } from "../ModeToggle";
 import Logo from "./logo";
-import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
 import Search from "./search";
-import { ChevronDown, ChevronLeft, Share2 } from "lucide-react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+import { useState } from "react";
 
 export default function Header() {
-    const path = usePathname();
-    console.log(path);
+    const [isExProofingOn, setExProofingOn] = useState(false);
+
+    const toggleExProofing = () => {
+        setExProofingOn(!isExProofingOn);
+    };
+
     return (
-        <header className="grid gap-3 pt-5 px-5 pb-5 md:px-20 lg:px-32">
-            <div className="flex items-center justify-between">
-                {path == "/" ? (
-                    <Button size="icon" onClick={() => { navigator.share({ url: window.location.href }) }} variant="outline" className="rounded-full lg:-ml-4"><Share2 className="w-4 h-4" /></Button>
-                ) : (
-                    <Button size="icon" asChild variant="outline" className="rounded-full"><Link href="/"><ChevronLeft className="w-5 h-5" /></Link></Button>
-                )}
-                <Logo />
+        <header className="flex justify-between items-center py-5 md:px-20 lg:px-32 px-6">
+            <Logo />
+            <div className="flex items-center justify-center gap-2">
+                <div className="hidden md:block">
+                    <Search />
+                </div>
+                {/* <Link href="/saved" className={cn(buttonVariants({ variant: "default" }), "gap-2")}>
+                    Saved <Bookmark className="w-4 h-4" />
+                </Link> */}
+                <button
+                    onClick={toggleExProofing}
+                    className={`px-4 py-2 text-sm font-semibold border rounded ${
+                        isExProofingOn
+                            ? "bg-white text-black border-black"
+                            : "bg-black text-white border-white"
+                    }`}
+                >
+                    Ex Proofing: {isExProofingOn ? "On" : "Off"}
+                </button>
                 <ModeToggle />
             </div>
-            <Search />
         </header>
-    )
+    );
 }
