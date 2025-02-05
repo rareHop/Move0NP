@@ -24,16 +24,6 @@ export default function Header() {
                 {/* <Link href="/saved" className={cn(buttonVariants({ variant: "default" }), "gap-2")}>
                     Saved <Bookmark className="w-4 h-4" />
                 </Link> */}
-                <button
-                    onClick={toggleExProofing}
-                    className={`px-4 py-2 text-sm font-semibold border rounded ${
-                        isExProofingOn
-                            ? "bg-white text-black border-black"
-                            : "bg-black text-white border-white"
-                    }`}
-                >
-                    Ex Proofing: {isExProofingOn ? "On" : "Off"}
-                </button>
                 <ModeToggle />
             </div>
         </header>
