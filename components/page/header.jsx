@@ -18,8 +18,7 @@ export default function Header() {
                 ) : (
                     <Button size="icon" asChild variant="outline" className="rounded-full"><Link href="/"><ChevronLeft className="w-5 h-5" /></Link></Button>
                 )}
-                <Logo />
-                     <button
+                      <button
                     onClick={toggleExProofing}
                     className={`px-4 py-2 text-sm font-semibold border rounded ${
                         isExProofingOn
@@ -29,6 +28,7 @@ export default function Header() {
                 >
                     Ex Proofing: {isExProofingOn ? "On" : "Off"}
                 </button>
+                <Logo />
                 <ModeToggle />
             </div>
             <Search />
